@@ -14,6 +14,8 @@ CELL_A1_HEADER_LEFT_WORK_M = "J2"
 #                    "=18590176")
 SPREADSHEET_URL = ("https://docs.google.com/spreadsheets/d/12aEJKP6XdZaGdTZIloJuUuNg7q6qyXTq36ZXHb_Rxk8/edit#gid=18590176")
 
+TOKEN = "6705142613:AAG1O41LMRRlbI1LKG454MN3OwBpB6oNcuw"
+
 MONTHLY_DICT = {
     'December': 'Декабрь',
     'January': 'Январь',
@@ -28,3 +30,21 @@ MONTHLY_DICT = {
     'October': 'Октябрь',
     'November': 'Ноябрь',
     }
+
+
+STAGES = [
+    "came to work",
+    "went to gym",
+    "back_to_work",
+    "left work",
+    ]
+
+CLEARING_DATA = "00:00"
+
+
+HELP = """
+Данный бот разрабатывается для удобного учета рабочего времени.
+    /start - start
+    /help - help
+Приятного пользования!
+"""

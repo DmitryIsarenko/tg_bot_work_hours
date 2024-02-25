@@ -26,68 +26,14 @@ def update_cell_with_data(ws: Worksheet, cell_row: int, cell_col: int, data):
     ws.update_cell(row=cell_row, col=cell_col, value=data)
 
 
-def get_row_of_today(ws: Worksheet, today: str) -> int:
-    cell_coords = ws.find(today)
-    # print(type(cell_coords))
-    # print(cell_coords)
+def get_row_of_day(ws: Worksheet, date_in_str: str) -> int:
+    cell_coords = ws.find(date_in_str)
     return cell_coords.row
 
 
 def get_worksheet_with_title(sh: Spreadsheet, title: str) -> Worksheet:
     ws = sh.worksheet(title=title)
     return ws
-
-
-# __________________________________________________________
-"""def get_titles_worksheets(sh: Spreadsheet) -> list:
-    ws_titles = []
-    for ws in sh.worksheets():
-        ws_titles.append(ws.title)
-        print(ws.title)
-        print(type(ws.title))
-    return ws_titles
-
-
-def get_cell_data(ws: Worksheet, cell_a1: str):
-    cell_val = ws.acell(label=cell_a1).value
-    print(cell_val)
-    return cell_val
-
-
-# def get_index_of_ws_with_title(sh:Spreadsheet, title: str) -> int:
-#     for ws in sh.worksheets():
-#         if ws.title == title:
-#
-
-
-def del_ws_with_title(sh: Spreadsheet, title: str):
-    for ws in sh.worksheets():
-        if ws.title == title:
-            sh.del_worksheet(ws)
-
-
-def add_ws_write_data_del_ws(sh: Spreadsheet):
-    new_ws = sh.add_worksheet(title="Title", cols=5, rows=6)
-    input("press enter")
-    new_ws.insert_row(values=["hello", "world"])
-    input("press enter")
-    new_ws.insert_note(cell="B2", content="some text")
-    input("press enter")
-    sh.del_worksheet(new_ws)
-
-
-def show_all_ws(worksheets: Worksheet):
-    for ws in worksheets:
-        print(ws)
-
-
-def get_url(sh: Spreadsheet) -> str:
-    return str(sh.url)
-
-
-def update_data_by_cell(ws: Worksheet, cell: list[int, int], data):
-    ws.update_cell(row=cell[0], col=cell[1], value=data)
-"""
 
 
 if __name__ == "__main__":

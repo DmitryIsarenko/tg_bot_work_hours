@@ -11,7 +11,7 @@ kb_main = [
         ],
     [
         KeyboardButton(text="/edit_today"),
-        KeyboardButton(text="/select_another_day")
+        # KeyboardButton(text="/select_another_day")
         ],
     [
         KeyboardButton(text="/settings"),
@@ -33,7 +33,7 @@ kb_edit_day = [
         KeyboardButton(text="/clear_by_one")
         ],
     [
-        KeyboardButton(text="/select_another_day"),
+        # KeyboardButton(text="/select_another_day"),
         KeyboardButton(text="/to_main_menu"),
         ],
     ]
@@ -48,7 +48,7 @@ kb_clear_by_one = [
         KeyboardButton(text="/clear_back_to_work")
         ],
     [
-        KeyboardButton(text="/select_another_day"),
+        # KeyboardButton(text="/select_another_day"),
         KeyboardButton(text="/to_main_menu"),
         ],
     ]
@@ -68,22 +68,22 @@ kb_settings = [
         ],
     ]
 
-kb_select_day = [
-    [
-        KeyboardButton(text="/select_previous_month"),
-        KeyboardButton(text=f"current_month"),
-        KeyboardButton(text="/select_next_month")
-        ],
-    [
-        KeyboardButton(text="pass"),
-        KeyboardButton(text="pass")
-        ],
-    [
-        KeyboardButton(text="/to_main_menu"),
-        ],
-    ]
 
-
+# kb_select_day = [
+#     [
+#         KeyboardButton(text="/select_previous_month"),
+#         KeyboardButton(text=f"current_month"),
+#         KeyboardButton(text="/select_next_month")
+#         ],
+#     [
+#         KeyboardButton(text="pass"),
+#         KeyboardButton(text="pass")
+#         ],
+#     [
+#         KeyboardButton(text="/to_main_menu"),
+#         ],
+#     ]
+#
 
 
 def main():
