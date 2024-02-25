@@ -1,5 +1,5 @@
 import datetime
-from .constants import MONTHLY_DICT
+from misc.constants import MONTHLY_DICT
 
 
 def get_today_date() -> str:
@@ -22,6 +22,15 @@ def get_current_month_in_ru_str() -> str:
     return month_in_ru
 
 
+def get_date_obj_by_date(*, date: str) -> datetime.datetime:
+    return datetime.datetime.strptime(date, "%d.%m.%Y %H:%M")
+
+
 if __name__ == "__main__":
-    get_current_month_in_ru_str()
+    date = get_date_obj_by_date(date="23.02.2022 11:22")
+    print(date)
+    print(type(date))
+    date_str = date.strftime("%d.%m.%Y %H:%M")
+    print(date_str)
+    print(type(date_str))
     pass

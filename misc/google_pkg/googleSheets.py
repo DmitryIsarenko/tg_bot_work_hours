@@ -28,6 +28,8 @@ def update_cell_with_data(ws: Worksheet, cell_row: int, cell_col: int, data):
 
 def get_row_of_today(ws: Worksheet, today: str) -> int:
     cell_coords = ws.find(today)
+    # print(type(cell_coords))
+    # print(cell_coords)
     return cell_coords.row
 
 
@@ -89,5 +91,4 @@ def update_data_by_cell(ws: Worksheet, cell: list[int, int], data):
 
 
 if __name__ == "__main__":
-    sh = get_spreadsheet()
-    get_worksheet_with_title(sh, title="Январь")
+    pass

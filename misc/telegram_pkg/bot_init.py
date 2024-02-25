@@ -5,19 +5,16 @@ from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
 from aiogram.filters import Command
 import asyncio
 import misc.google_pkg.pushing_to_gsheet
+import misc.google_pkg.googleSheets
 from misc.time_operations import get_time_now_tuple_H_M
 from misc.telegram_pkg.tg_keyboards import kb_main, kb_edit_day, kb_select_day, kb_clear_by_one, kb_settings
+from misc.constants import SPREADSHEET_URL
 
 TOKEN = "6705142613:AAG1O41LMRRlbI1LKG454MN3OwBpB6oNcuw"
 HELP = """
 Данный бот разрабатывается для удобного учета рабочего времени.
-Список доступных команд:
     /start - start
     /help - help
-    /came_to_work
-    /left_to_gym
-    /back_to_work
-    /end_of_work    
 Приятного пользования!
 """
 
@@ -55,32 +52,63 @@ async def start_func(message: Message) -> None:
     await message.answer("Какую команду отправить боту?", reply_markup=keyboard)
 
 
+# @dp.message(F.text == "/came_to_work")
+# async def came_to_work(message: Message) -> None:
+#     misc.google_pkg.pushing_to_gsheet.push_came_to_work()
+#     print("пришел на работу")
+#     await message.reply(text="Пришел на работу")
+
+
+
+
+
 @dp.message(F.text == "/came_to_work")
 async def came_to_work(message: Message) -> None:
-    misc.google_pkg.pushing_to_gsheet.push_time_came_to_work(data=get_time_now_tuple_H_M())
+
+    data = {
+        "date_obj": ,
+        "date_in_str": ,
+        "month_in_str": ,
+        "sh": ,
+        "ws": ,
+        "row_of_day": ,
+        "col_to_push": ,
+        }
+
+
+
+    misc.google_pkg.pushing_to_gsheet.push_came_to_work()
     print("пришел на работу")
+    today_data = {
+        "sh": misc.google_pkg.googleSheets.get_spreadsheet(),
+        "ws": misc.google_pkg.googleSheets.get_worksheet_with_title(),
+        "today_date":None,
+        "today_month_str":None,
+        "time_in_tuple_H_M":None,
+        "row_of_today":None,
+        }
     await message.reply(text="Пришел на работу")
 
 
 @dp.message(F.text == "/end_of_work")
 async def end_of_work(message: Message) -> None:
-    misc.google_pkg.pushing_to_gsheet.push_time_left_work(data=get_time_now_tuple_H_M())
+    misc.google_pkg.pushing_to_gsheet.push_left_work()
     print("ушел с работы")
     await message.reply(text="ушел с работы")
 
 
 @dp.message(F.text == "/left_to_gym")
 async def left_to_gym(message: Message) -> None:
-    misc.google_pkg.pushing_to_gsheet.push_time_went_to_gym(data=get_time_now_tuple_H_M())
+    misc.google_pkg.pushing_to_gsheet.push_went_to_gym()
     print("пошел в зал")
-    await message.reply(text="Пришел на работу")
+    await message.reply(text="пошел в зал")
 
 
 @dp.message(F.text == "/back_to_work")
 async def back_to_work(message: Message) -> None:
-    misc.google_pkg.pushing_to_gsheet.push_time_get_to_work_after_gym(data=get_time_now_tuple_H_M())
+    misc.google_pkg.pushing_to_gsheet.push_got_to_work_after_gym()
     print("вернулся после зала на работу")
-    await message.reply(text="пошел в зал")
+    await message.reply(text="вернулся после зала на работу")
 
 
 @dp.message(F.text == "/clear_today")
@@ -165,6 +193,20 @@ async def to_main_menu(message: Message) -> None:
     print("в главное меню")
     keyboard = ReplyKeyboardMarkup(keyboard=kb_main)
     await message.reply(text="в главное меню", reply_markup=keyboard)
+
+
+@dp.message(F.text == "/get_table_url")
+async def send_table_url(message: Message) -> None:
+    print("отправляем ссылку на таблицу")
+    keyboard = ReplyKeyboardMarkup(keyboard=kb_settings)
+    await message.reply(text=SPREADSHEET_URL, reply_markup=keyboard)
+
+
+@dp.message(F.text == "/get_my_id")
+async def send_user_id(message: Message) -> None:
+    print("отправляем id пользователя")
+    keyboard = ReplyKeyboardMarkup(keyboard=kb_settings)
+    await message.reply(text=f"Ваш ID: {message.from_user.id}", keyboard=keyboard)
 
 
 async def main():
